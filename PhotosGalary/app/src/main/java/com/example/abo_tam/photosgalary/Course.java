@@ -3,17 +3,17 @@ package com.example.abo_tam.photosgalary;
 /**
  * Created by abo_tam on 8/19/2015.
  */
-public class Cource {
+public class Course {
     private int id;
     private String name;
     private int absents;
 
-    public Cource(String name) {
+    public Course(String name) {
         this.name = name;
         this.id = this.absents = 0;
     }
 
-    public Cource(int id, String name, int absents) {
+    public Course(int id, String name, int absents) {
         this.name = name;
         this.id = id;
         this.absents = absents;
@@ -35,15 +35,4 @@ public class Cource {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void increase() {
-        absents++;
-    }
-
-    public void decrease() {
-        absents--;
-    }
 }

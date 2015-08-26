@@ -11,11 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AddCource extends Activity {
+public class AddCourse extends Activity {
 
     private static EditText editText;
     private static Button button;
-    private static Database db;
+    private static CourseDatabase db;
 
 
     @Override
@@ -28,19 +28,18 @@ public class AddCource extends Activity {
         //TODO: set maximum 7 char
         editText = (EditText) findViewById(R.id.editText);
         button = (Button) findViewById(R.id.button);
-        db = new Database(this);
+        db = new CourseDatabase(this);
 
         button.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean res;
-                        if (editText.getText().length() != 0) {
 
-                            res = addAndFinish();
+                        if (editText.getText().length() != 0) {
+                            addAndFinish();
                         } else
-                            res = false;
-                        Toast.makeText(AddCource.this, "the result is " + res, Toast.LENGTH_LONG).show();
+
+                            Toast.makeText(AddCourse.this, "Course " + editText.getText().toString() + " is not added", Toast.LENGTH_LONG).show();
 
                     }
                 }
@@ -50,24 +49,27 @@ public class AddCource extends Activity {
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(isValid(actionId)) {
+                if (isValid(actionId)) {
                     addAndFinish();
                     return true;
                 }
+                Toast.makeText(AddCourse.this, "Course " + editText.getText().toString() + " is not added", Toast.LENGTH_LONG).show();
                 return false;
             }
         });
 
     }
 
-    private boolean addAndFinish(){
+    private void addAndFinish(){
         //TODO: enter key add two times
-        boolean res = db.insertCource(
-                new Cource(editText.getText().toString())
+        boolean isSuccess = db.insertCourse(
+                new Course(editText.getText().toString())
         );
-        MainActivity.setListView();
-        finish();
-        return res;
+        if(isSuccess) {
+            Toast.makeText(this, "Course " + editText.getText().toString() + " is added", Toast.LENGTH_LONG).show();
+            MainActivity.setListView();
+            finish();
+        }
     }
 
     private boolean isValid(int actionId){

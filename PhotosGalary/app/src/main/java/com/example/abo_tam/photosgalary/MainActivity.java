@@ -16,54 +16,30 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
     public final static String TAG = "test";
-    public static Activity activity;
+    private static Activity activity;
     private static ListView listView;
     private static Button addButton;
-    private static Database db;
+    private static CourseDatabase db;
     private Intent intent;
 
     public static void setListView() {
-        listView = (ListView) activity.findViewById(R.id.listView);
+        listView = (ListView) MainActivity.getActivity().findViewById(R.id.listView);
         Cursor cursor = db.getData();
-        Cource[] cources = new Cource[cursor.getCount()];
+        Course[] courses = new Course[cursor.getCount()];
 
         if (cursor.getCount() == 0)
-            Toast.makeText(activity, "no rows", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.getActivity(), "no rows", Toast.LENGTH_LONG).show();
 
         int i = 0;
         while (cursor.moveToNext()) {
-            cources[i++] = new Cource(cursor.getInt(0), cursor.getString(1), cursor.getInt(2));
+            courses[i++] = new Course(cursor.getInt(0), cursor.getString(1), cursor.getInt(2));
         }
-        ListAdapter adapter = new CourceAdapter(activity, cources);
+        ListAdapter adapter = new CourseAdapter(MainActivity.getActivity(), courses);
         listView.setAdapter(adapter);
     }
 
-    public static void increaseAbsent(Cource cource) {
-        db.execute("UPDATE Course SET Absents = Absents + 1 WHERE ID = " + cource.getId());
-        setListView();
-    }
-
-    public static void decreaseAbsent(Cource cource) {
-        if (cource.getAbsents() == 0)
-            return;
-        db.execute("UPDATE Course SET Absents = Absents - 1 WHERE ID = " + cource.getId());
-        setListView();
-    }
-
-    public static void deleteCourse(final Cource cource) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle(R.string.dialogTitle)
-                .setMessage(R.string.dialogMessage)
-                .setPositiveButton(R.string.dialogPositive, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        db.execute("DELETE FROM Course WHERE ID = " + cource.getId());
-                        setListView();
-                    }
-                })
-                .setNegativeButton(R.string.dialogNegative, null);
-        builder.create();
-        builder.show();
+    public static Activity getActivity(){
+        return activity;
     }
 
     @Override
@@ -71,9 +47,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        intent = new Intent(this, AddCource.class);
+        intent = new Intent(this, AddCourse.class);
 
-        db = new Database(this);
+        db = new CourseDatabase(this);
         addButton = (Button) findViewById(R.id.add);
         activity = this;
 
@@ -86,7 +62,7 @@ public class MainActivity extends Activity {
 
     }
 
-    public void setAddButton() {
+    private void setAddButton() {
         addButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
