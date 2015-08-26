@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.abo_tam.photosgalary.AddCource">
+    tools:context="com.example.abo_tam.photosgalary.AddCource"
+    >
 
 
     <LinearLayout
@@ -19,7 +20,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/cource_name"
-            android:maxLength="7" />
+            android:maxLength="7"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            />
 
         <Button
             android:id="@+id/button"

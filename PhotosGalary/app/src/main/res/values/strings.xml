@@ -12,4 +12,6 @@
     <string name="dialogTitle">Delete Course</string>
     <string name="dialogPositive">delete</string>
     <string name="dialogNegative">cancel</string>
+    <string name="couseName">cource</string>
+    <string name="counter">counter</string>
 </resources>

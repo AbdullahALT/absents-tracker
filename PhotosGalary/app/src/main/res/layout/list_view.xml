@@ -18,22 +18,24 @@
             android:text="-" />
 
         <TextView
-            android:id="@+id/courseName"
+            android:id="@+id/absentCounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/decrease"
-            android:text="cource"
+            android:layout_toStartOf="@+id/increase"
+            android:text="@string/counter"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/absentCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignBottom="@id/courseName"
-            android:layout_alignTop="@id/courseName"
-            android:layout_toStartOf="@+id/increase"
-            android:text="counter"
+            android:id="@+id/courseName"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/decrease"
+            android:layout_toStartOf="@id/absentCounter"
+            android:text="@string/couseName"
+            android:textAlignment="viewStart"
             android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
 
         <Button
             android:id="@+id/increase"
