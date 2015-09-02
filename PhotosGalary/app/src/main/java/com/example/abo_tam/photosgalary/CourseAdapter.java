@@ -19,11 +19,11 @@ import java.util.List;
 public class CourseAdapter extends ArrayAdapter<Course> {
 
     private static CourseDatabase db;
-    private int position;
 
     public CourseAdapter(Context context, Course[] objects) {
         super(context, R.layout.list_view, objects);
         db = new CourseDatabase(MainActivity.getActivity());
+
     }
 
     @Override
@@ -35,52 +35,19 @@ public class CourseAdapter extends ArrayAdapter<Course> {
         TextView absents = (TextView) courseView.findViewById(R.id.absentCounter);
         Button increase = (Button) courseView.findViewById(R.id.increase);
         Button decrease = (Button) courseView.findViewById(R.id.decrease);
-        this.position = position;
 
         courseName.setText(getItem(position).getName());
         absents.setText(String.valueOf(getItem(position).getAbsents()));
 
         increase.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d(MainActivity.TAG, "increase button clicked on " + getItem(position).getName());
-                        db.increaseAbsents(getItem(position));
-                        MainActivity.setListView();
-                    }
-                }
+                new ClicksHandler(this, db, position)
         );
 
         decrease.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d(MainActivity.TAG, "decrease button clicked on " + getItem(position).getName());
-                        db.decreaseAbsents(getItem(position));
-                        MainActivity.setListView();
-                    }
-                }
+                new ClicksHandler(this, db, position)
         );
         courseName.setOnLongClickListener(
-                new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.getActivity());
-                        builder.setTitle(R.string.dialogTitle)
-                                .setMessage(R.string.dialogMessage)
-                                .setPositiveButton(R.string.dialogPositive, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        db.removeCourse(getItem(position));
-                                        MainActivity.setListView();
-                                    }
-                                })
-                                .setNegativeButton(R.string.dialogNegative, null);
-                        builder.create();
-                        builder.show();
-                        return true;
-                    }
-                }
+                new ClicksHandler(this, db, position)
         );
 
         return courseView;

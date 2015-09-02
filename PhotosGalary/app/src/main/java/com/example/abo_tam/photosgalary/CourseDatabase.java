@@ -66,6 +66,7 @@ public class CourseDatabase extends SQLiteOpenHelper {
     }
 
     public void decreaseAbsents(Course course){
+        if(course.getAbsents() == 0) return;
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("UPDATE Course SET Absents = Absents - 1 WHERE ID = " + course.getId());
     }
