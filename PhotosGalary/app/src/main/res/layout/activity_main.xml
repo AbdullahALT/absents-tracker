@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:background="@drawable/coustom_button"
         android:text="@string/addButton" />
 
     <ListView

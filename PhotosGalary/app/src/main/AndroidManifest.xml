@@ -6,7 +6,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme2">
+
+        <uses-permission android:name= "com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY"/>
+        <meta-data android:name="com.samsung.android.sdk.multiwindow.enable"
+            android:value="true"/>
 
         <activity
             android:name=".MainActivity"
@@ -20,6 +24,7 @@
         <activity
             android:name=".AddCourse"
             android:label="@string/title_activity_add_cource"
+            android:theme="@style/AppTheme2"
             android:windowSoftInputMode="stateVisible">
 
         </activity>

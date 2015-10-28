@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Material"></style>
+
+    <color name="background">#d6ffff</color>
+    <color name="navigation_status">#01565d</color>
+    <color name="actionbar">#73c3aa</color>
+    <color name="helping1">#c1ddff</color>
+    <color name="helping2">@color/text</color>
+    <color name="text">#005251</color>
+    
+    <color name="button_rest">@color/actionbar</color>
+    <color name="button_focused">#74032b</color>
+    <color name="button_pressed">#447666</color>
+    <color name="button_struck">@color/text</color>
+
+    <style name="AppTheme2" parent="android:Theme.Material.Light">
+    <!-- Customize your theme here. -->
+
+    <item name="android:colorPrimaryDark">@color/navigation_status</item>
+    <item name="android:textColorPrimary">@color/helping2</item>
+    <item name="android:navigationBarColor">@color/navigation_status</item>
+    <item name="android:windowBackground">@color/background</item>
+    <item name="android:colorPrimary">@color/actionbar</item>
+    <item name="android:textColor">@color/navigation_status</item>
+    </style>
+
 </resources>

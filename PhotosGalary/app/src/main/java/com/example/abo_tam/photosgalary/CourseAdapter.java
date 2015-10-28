@@ -16,6 +16,8 @@ import java.util.List;
 /**
  * Created by abo_tam on 8/19/2015.
  */
+
+
 public class CourseAdapter extends ArrayAdapter<Course> {
 
     private static CourseDatabase db;
