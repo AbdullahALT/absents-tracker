@@ -33,6 +33,8 @@ public class CourseAdapter extends ArrayAdapter<Course> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View courseView = inflater.inflate(R.layout.list_view, parent, false);
 
+
+
         TextView courseName = (TextView) courseView.findViewById(R.id.courseName);
         TextView absents = (TextView) courseView.findViewById(R.id.absentCounter);
         Button increase = (Button) courseView.findViewById(R.id.increase);
@@ -54,5 +56,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
 
         return courseView;
     }
+
+
 
 }

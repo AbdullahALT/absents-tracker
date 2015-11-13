@@ -2,13 +2,17 @@ package com.example.abo_tam.photosgalary;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,7 +22,6 @@ public class MainActivity extends Activity {
     public final static String TAG = "test";
     private static Activity activity;
     private static ListView listView;
-    private static Button addButton;
     private static CourseDatabase db;
     private Intent intent;
 
@@ -50,20 +53,14 @@ public class MainActivity extends Activity {
         intent = new Intent(this, AddCourse.class);
 
         db = new CourseDatabase(this);
-        addButton = (Button) findViewById(R.id.add);
         activity = this;
 
         Log.d(TAG, "list view have been found");
         setListView();
-        //test();
-        setAddButton();
-        Log.d(TAG, "list view seted");
+        View button = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_view_footer, null, false);
 
-
-    }
-
-    private void setAddButton() {
-        addButton.setOnClickListener(
+        Button b = (Button) button.findViewById(R.id.add);
+        b.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -71,6 +68,14 @@ public class MainActivity extends Activity {
                     }
                 }
         );
+
+        listView.addFooterView(button);
+        //test();
+        Log.d(TAG, "list view seted");
+
+
     }
+
+
 
 }
